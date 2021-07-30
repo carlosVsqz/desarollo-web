@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" id="validationCustom03" placeholder="Email" required>
+                    <input type="email" class="form-control" id="validationCustom03" placeholder="Email" required>
                     <div class="invalid-feedback">
                         Ingrese un email valido!
                     </div>
@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <input type="number" class="form-control" id="validationCustom06" placeholder="Fecha de vencimiento"
+                    <input type="date" class="form-control" id="validationCustom06" placeholder="Fecha de vencimiento"
                            required>
                     <div class="invalid-feedback">
                         Ingrese una fecha valida
@@ -111,7 +111,15 @@
                 <div class="col-md-3">
                     <select class="form-select" id="validationCustom07" required>
                         <option selected disabled value="">Banco emisor</option>
-                        <option>...</option>
+                        <option>Agromercantil</option>
+                        <option>Banco Azteca</option>
+                        <option>Banco de Antigua</option>
+                        <option>Banco BAC</option>
+                        <option>Banco Citi</option>
+                        <option>Banco Credito Hipotecario</option>
+                        <option>Banco De Credito</option>
+                        <option>Banco Bantrab</option>
+                        <option>Banrural</option>
                     </select>
                     <div class="invalid-feedback">
                         Seleccione un banco
@@ -120,7 +128,17 @@
                 <div class="col-md-3">
                     <select class="form-select" id="validationCustom08" required>
                         <option selected disabled value="">Pais a viajar</option>
-                        <option>...</option>
+                        <option>Finlandia</option>
+                        <option>Dinamarca</option>
+                        <option>Noruega</option>
+                        <option>Islandia</option>
+                        <option>Países Bajos</option>
+                        <option>Suiza</option>
+                        <option>Suecia</option>
+                        <option>Nueva Zelanda</option>
+                        <option>Guatemala</option>
+                        <option>Costa Rica</option>
+                        <option>Estados Unidos</option>
                     </select>
                     <div class="invalid-feedback">
                         Seleccione un pais
@@ -128,13 +146,16 @@
                 </div>
                 <span class="mobile-text">Duracion en tiempo</span>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" id="validationCustom09" placeholder="Fecha de inicio" required>
+                    <input  type="date" class="form-control" id="mind" placeholder="Fecha de inicio"
+                           required>
                     <div class="invalid-feedback">
                         Ingrese un dato valido!
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" id="validationCustom10" placeholder="Fecha de fin" required>
+                    <input  type="date" class="form-control" id="maxd"
+                           placeholder="Fecha de fin"
+                           required>
                     <div class="invalid-feedback">
                         Ingrese un dato valido!
                     </div>
@@ -147,16 +168,12 @@
         </div>
     </div>
 </div>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
 
         'use strict'
-
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
         var forms = document.querySelectorAll('.needs-validation')
 
-        // Loop over them and prevent submission
         Array.prototype.slice.call(forms)
             .forEach(function (form) {
                 form.addEventListener('submit', function (event) {
@@ -164,13 +181,9 @@
                         event.preventDefault()
                         event.stopPropagation()
                     }
-
                     form.classList.add('was-validated')
                 }, false)
             })
-        const doc = document.getElementById("form")
-        doc.addEventListener('submit', (event) => {
-        });
     });
 </script>
 </body>
