@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Tours de relajamiento</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
-    <link rel="script" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js">
     <style>
         .card {
             width: 850px;
@@ -155,6 +154,7 @@
                 <div class="col-md-6">
                     <input type="date" class="form-control" id="maxd"
                            placeholder="Fecha de fin"
+                           readonly
                            required>
                     <div class="invalid-feedback">
                         Ingrese un dato valido!
@@ -186,7 +186,9 @@
             let a = new Date(target[0], target[1] - 1, target[2]);
             if (a > date) {
                 current = a;
+                document.getElementById('maxd').removeAttribute('readonly');
             } else if (a < date) {
+                event.target.value = null;
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -204,16 +206,13 @@
                 max = current;
             }
             if (a < max) {
+                event.target.value = null;
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'No puede seleccionar una fecha inferior a la seleccionada',
                 })
             }
-        });
-
-        maxValue.addEventListener('change', (event) => {
-            console.log(event.target.value);
         });
 
         Array.prototype.slice.call(forms)
