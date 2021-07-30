@@ -146,14 +146,14 @@
                 </div>
                 <span class="mobile-text">Duracion en tiempo</span>
                 <div class="col-md-6">
-                    <input  type="date" class="form-control" id="mind" placeholder="Fecha de inicio"
+                    <input type="date" class="form-control" id="mind" placeholder="Fecha de inicio"
                            required>
                     <div class="invalid-feedback">
                         Ingrese un dato valido!
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <input  type="date" class="form-control" id="maxd"
+                    <input type="date" class="form-control" id="maxd"
                            placeholder="Fecha de fin"
                            required>
                     <div class="invalid-feedback">
@@ -168,15 +168,57 @@
         </div>
     </div>
 </div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
 
         'use strict'
         var forms = document.querySelectorAll('.needs-validation')
 
+        const minValue = document.getElementById('mind');
+        const maxValue = document.getElementById('maxd');
+        let max;
+        let date = new Date();
+
+        let current;
+        minValue.addEventListener('change', (event) => {
+            let target = event.target.value.split('-');
+            let a = new Date(target[0], target[1] - 1, target[2]);
+            if (a > date) {
+                current = a;
+            } else if (a < date) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'No puede seleccionar una fecha inferior a la de hoy',
+                })
+            }
+        });
+
+        maxValue.addEventListener('change', (event) => {
+            let target = event.target.value.split('-');
+            let a = new Date(target[0], target[1] - 1, target[2]);
+            if (current === null) {
+                max = new Date();
+            } else {
+                max = current;
+            }
+            if (a < max) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'No puede seleccionar una fecha inferior a la seleccionada',
+                })
+            }
+        });
+
+        maxValue.addEventListener('change', (event) => {
+            console.log(event.target.value);
+        });
+
         Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
+            .forEach((form) => {
+                form.addEventListener('submit', (event) => {
                     if (!form.checkValidity()) {
                         event.preventDefault()
                         event.stopPropagation()
